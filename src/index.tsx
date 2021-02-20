@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router} from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { RecoilRoot } from 'recoil';
+
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <CssBaseline />
+          <App />
+        </Router>
+      </QueryClientProvider>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 );
